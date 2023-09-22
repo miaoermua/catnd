@@ -1,7 +1,21 @@
 # catnd
 CatWrt-network-diagnostics
 
-适用用于 CatWrt 的网络诊断脚本
+适用用于 CatWrt 的网络诊断脚本，暂时不考虑第三方版本 OpenWrt
+
+**在线执行（闹着玩）**
+
+```bash
+curl https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh | bash
+```
+
+**安装到 CatWrt 中**
+
+```bash
+curl -o /usr/bin/catnd https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh
+chmod +x /usr/bin/catnd
+catnd
+```
 
 - 开始
 - 通过 ping IP 地址测试网络是否连通
