@@ -3,7 +3,7 @@
  # @Author: 喵二
  # @Date: 2023-09-22 09:19:42
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-22 18:11:14
+ # @LastEditTime: 2023-09-22 18:16:32
  # @FilePath: \undefinedd:\Git\catnd\catnd.sh
 ### 
 
@@ -25,24 +25,32 @@ if [[ $release =~ "OpenWrt" ]]; then
 else
   echo "Abnormal system environment..."
   echo " "
-  echo " "
-  echo " "
   exit 1
 fi
+
+# Banner
+
+cat /etc/banner
+echo " "
+echo " "
+echo " "
 
 # Ping & PPPoE
 
 ping -c 3 223.5.5.5 > /dev/null
 if [ $? -eq 0 ]; then
-    echo "[Ping] Network connection succeeded"
+    echo "[Ping] Network connection succeeded!"
+    echo " "
 else
     ping -c 3 119.29.29.99 > /dev/null
     if [ $? -eq 0 ]; then
         echo "[Ping] Network connection succeeded,But there may be problems!"
+        echo " "
     else
         pppoe_config=$(grep 'pppoe' /etc/config/network)
         if [ ! -z "$pppoe_config" ]; then
             echo "[PPPoE] Please check if your PPPoE account and password are correct."
+            echo " "
         fi
         exit 1
     fi
@@ -65,7 +73,8 @@ done
 
 # 是否存在坏逼 DNS
 
-echo "[DNS] DNS configuration looks good"
+echo "[DNS] DNS configuration looks good!"
+echo " "
 
 bad_dns="114.114.114.114 114.114.115.115 119.29.29.29"
 if [[ $dns_config =~ $bad_dns ]]; then
@@ -131,6 +140,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "$(date) - Network check completed"
+echo " "
 echo "CatWrt Network Diagnostics by @miaoermua"
 echo " "
 echo " "
