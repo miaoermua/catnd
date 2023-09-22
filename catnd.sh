@@ -96,7 +96,7 @@ fi
 
 # CatWrt PPPoE
 
-grep 'dhcp' /etc/config/network
+grep 'dhcp' /etc/config/network > /dev/null
 if [ $? -eq 0 ]; then
     echo "[PPPoE] DHCP protocol detected in WAN interface"
     echo "The device may not be in PPPoE gateway mode"
@@ -104,12 +104,12 @@ fi
 
 # IPv6 WAN6
 
-grep 'config interface' /etc/config/network | grep 'wan6'
+grep 'config interface' /etc/config/network | grep 'wan6'  > /dev/null
 if [ $? -ne 0 ]; then
    echo "Your IPv6 network may have issues"
 fi 
 
-grep 'dhcpv6' /etc/config/network
+grep 'dhcpv6' /etc/config/network > /dev/null
 if [ $? -ne 0 ]; then
    echo "Your IPv6 network may have issues"
 fi
