@@ -3,7 +3,7 @@
  # @Author: 喵二
  # @Date: 2023-09-22 09:19:42
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-22 22:25:28
+ # @LastEditTime: 2023-09-22 22:28:57
  # @FilePath: \undefinedd:\Git\catnd\catnd.sh
 ### 
 
@@ -105,7 +105,7 @@ fi
 
 # Public IP
 
-echo CatWrt IPv4 Addr: $(curl --silent 4.ipw.cn)
+echo CatWrt IPv4 Addr: $(curl --silent --connect-timeout 5 4.ipw.cn )
 echo " "
 
 curl 6.ipw.cn --connect-timeout 5 > /dev/null 2>&1
@@ -179,6 +179,8 @@ if [ $? -ne 0 ]; then
 fi
 
 # Tcping
+
+echo "[Tcping] Testing..."
 
 tcping -q -c 1 cn.bing.com
 [ $? -ne 0 ] && echo "Failed: cn.bing.com"
