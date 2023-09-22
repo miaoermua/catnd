@@ -3,7 +3,7 @@
  # @Author: 喵二
  # @Date: 2023-09-22 09:19:42
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-22 18:16:32
+ # @LastEditTime: 2023-09-22 18:43:48
  # @FilePath: \undefinedd:\Git\catnd\catnd.sh
 ### 
 
@@ -97,10 +97,11 @@ if [ $? -ne 0 ]; then
   fi
 fi
 
-# Default-IP
+# Default IP
 
-ipaddr_config=$(grep 'option ipaddr' /etc/config/network)
-if [ "$ipaddr_config" != "option ipaddr '192.168.1.4'" ]; then
+ipaddr_config=$(grep '192.168.1.4' /etc/config/network)
+
+if [ -z "$ipaddr_config" ]; then
   echo "[Default-IP] address is not the catwrt default 192.168.1.4"
   echo "Please configure your network at 'https://www.miaoer.xyz/posts/network/quickstart-catwrt'"
   echo " "
