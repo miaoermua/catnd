@@ -3,9 +3,13 @@
  # @Author: 喵二
  # @Date: 2023-09-22 09:19:42
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-22 17:14:45
+ # @LastEditTime: 2023-09-22 18:11:14
  # @FilePath: \undefinedd:\Git\catnd\catnd.sh
 ### 
+
+echo " "
+echo " "
+echo " "
 
 # Check OpenWrt
 
@@ -20,6 +24,9 @@ if [[ $release =~ "OpenWrt" ]]; then
   echo "$(date) - Starting CatWrt Network Diagnostics"  
 else
   echo "Abnormal system environment..."
+  echo " "
+  echo " "
+  echo " "
   exit 1
 fi
 
@@ -31,7 +38,7 @@ if [ $? -eq 0 ]; then
 else
     ping -c 3 119.29.29.99 > /dev/null
     if [ $? -eq 0 ]; then
-        echo "[Ping] Network connection succeeded"
+        echo "[Ping] Network connection succeeded,But there may be problems!"
     else
         pppoe_config=$(grep 'pppoe' /etc/config/network)
         if [ ! -z "$pppoe_config" ]; then
@@ -50,7 +57,8 @@ dns_servers=$(echo $dns_config | awk -F "'" '{print $2}')
 
 for ip in $dns_servers; do
   if ! [[ $valid_dns =~ (^|[ ])$ip($|[ ]) ]]; then
-    echo "Invalid DNS IP: $ip"
+    echo "[DNS] Recommended to delete DNS $ip"
+    echo " "
     exit 1
   fi
 done
@@ -62,6 +70,7 @@ echo "[DNS] DNS configuration looks good"
 bad_dns="114.114.114.114 114.114.115.115 119.29.29.29"
 if [[ $dns_config =~ $bad_dns ]]; then
   echo "[DNS] DNS may be polluted or unreliable"
+  echo " "
 fi
 
 # nslookup
@@ -71,9 +80,11 @@ if [ $? -ne 0 ]; then
   nslookup www.miaoer.xyz > /dev/null
   if [ $? -eq 0 ]; then  
     echo "[DNS] DNS resolution succeeded"
+    echo " "
   else
-    echo "[DNS] NS resolution failed for www.miaoer.xyz"
+    echo "[DNS] NS resolution failed for 'www.miaoer.xyz'"
     echo "[DNS] Your DNS server may have issues"
+    echo " "
   fi
 fi
 
@@ -83,23 +94,26 @@ ipaddr_config=$(grep 'option ipaddr' /etc/config/network)
 if [ "$ipaddr_config" != "option ipaddr '192.168.1.4'" ]; then
   echo "[Default-IP] address is not the catwrt default 192.168.1.4"
   echo "Please configure your network at 'https://www.miaoer.xyz/posts/network/quickstart-catwrt'"
+  echo " "
 fi
 
-# Bypass gateway
+# Bypass Gateway
 
 wan_config=$(grep 'config interface' /etc/config/network | grep 'wan')
 
 if [ -z "$wan_config" ]; then
   echo "[Bypass Gateway] No config for 'wan' interface found in /etc/config/network"
   echo "Please check if your device is set as a Bypass Gateway"
+  echo " "
 fi
 
 # CatWrt PPPoE
 
-grep 'dhcp' /etc/config/network > /dev/null
+grep 'option password' /etc/config/network > /dev/null
 if [ $? -eq 0 ]; then
     echo "[PPPoE] DHCP protocol detected in WAN interface"
     echo "The device may not be in PPPoE gateway mode"
+    echo " "
 fi
 
 # IPv6 WAN6
@@ -107,12 +121,17 @@ fi
 grep 'config interface' /etc/config/network | grep 'wan6'  > /dev/null
 if [ $? -ne 0 ]; then
    echo "Your IPv6 network may have issues"
+   echo " "
 fi 
 
 grep 'dhcpv6' /etc/config/network > /dev/null
 if [ $? -ne 0 ]; then
    echo "Your IPv6 network may have issues"
+   echo " "
 fi
 
 echo "$(date) - Network check completed"
 echo "CatWrt Network Diagnostics by @miaoermua"
+echo " "
+echo " "
+echo " "
