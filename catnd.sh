@@ -3,11 +3,25 @@
  # @Author: 喵二
  # @Date: 2023-09-22 09:19:42
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-22 16:41:52
+ # @LastEditTime: 2023-09-22 17:14:45
  # @FilePath: \undefinedd:\Git\catnd\catnd.sh
 ### 
 
-echo "$(date) - Starting CatWrt-network-diagnostics"  
+# Check OpenWrt
+
+if [ $(id -u) != "0" ]; then
+    echo "Error: You must be root to run this script, please use root user"
+    exit 1
+fi
+
+release=$(cat /etc/openwrt_release)
+
+if [[ $release =~ "OpenWrt" ]]; then
+  echo "$(date) - Starting CatWrt Network Diagnostics"  
+else
+  echo "Abnormal system environment..."
+  exit 1
+fi
 
 # Ping & PPPoE
 
@@ -76,8 +90,8 @@ fi
 wan_config=$(grep 'config interface' /etc/config/network | grep 'wan')
 
 if [ -z "$wan_config" ]; then
-  echo "[bypass gateway] No config for 'wan' interface found in /etc/config/network"
-  echo "Please check if your device is set as a bypass gateway"
+  echo "[Bypass Gateway] No config for 'wan' interface found in /etc/config/network"
+  echo "Please check if your device is set as a Bypass Gateway"
 fi
 
 # CatWrt PPPoE
@@ -101,4 +115,4 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "$(date) - Network check completed"
-echo "CatWrt-network-diagnostics by @miaoermua"
+echo "CatWrt Network Diagnostics by @miaoermua"
