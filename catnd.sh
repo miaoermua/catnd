@@ -3,8 +3,8 @@
  # @Author: 喵二
  # @Date: 2023-09-22 09:19:42
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-22 22:06:47
- # @FilePath: \undefinedc:\Users\cat\AppData\Local\Temp\tmp-33956-FsWTTz8Zr5xI\check.sh
+ # @LastEditTime: 2023-09-22 22:25:28
+ # @FilePath: \undefinedd:\Git\catnd\catnd.sh
 ### 
 
 echo " "
@@ -151,11 +151,17 @@ fi
 
 # CatWrt PPPoE
 
-grep 'option password' /etc/config/network > /dev/null
-if [ $? -eq 0 ]; then
+pass_config=$(grep 'password' /etc/config/network)
+user_config=$(grep 'username' /etc/config/network)
+pppoe_config=$(grep 'pppoe' /etc/config/network)
+
+if [ -n "$pass_config" ] && [ -n "$user_config" ] && [ -n "$pppoe_config" ]; then
+    echo "[PPPoE] PPPoE Gateway mode"
+    echo " " 
+else
     echo "[PPPoE] DHCP protocol detected in WAN interface"
-    echo "The device may not be in PPPoE gateway mode"
-    echo " "
+    echo "The device may not be in PPPoE Gateway mode"
+    echo " " 
 fi
 
 # IPv6 WAN6
