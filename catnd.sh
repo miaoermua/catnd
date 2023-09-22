@@ -3,8 +3,8 @@
  # @Author: 喵二
  # @Date: 2023-09-22 09:19:42
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-22 18:43:48
- # @FilePath: \undefinedd:\Git\catnd\catnd.sh
+ # @LastEditTime: 2023-09-22 22:06:47
+ # @FilePath: \undefinedc:\Users\cat\AppData\Local\Temp\tmp-33956-FsWTTz8Zr5xI\check.sh
 ### 
 
 echo " "
@@ -28,11 +28,17 @@ else
   exit 1
 fi
 
+# Start
+
+clear
+
 # Banner
 
 cat /etc/banner
 echo " "
 echo " "
+echo " "
+echo "$(date) - Starting CatWrt Network Diagnostics" 
 echo " "
 
 # Ping & PPPoE
@@ -71,7 +77,7 @@ for ip in $dns_servers; do
   fi
 done
 
-# 是否存在坏逼 DNS
+# Bad DNS
 
 echo "[DNS] DNS configuration looks good!"
 echo " "
@@ -95,6 +101,32 @@ if [ $? -ne 0 ]; then
     echo "[DNS] Your DNS server may have issues"
     echo " "
   fi
+fi
+
+# Public IP
+
+echo CatWrt IPv4 Addr: $(curl --silent 4.ipw.cn)
+echo " "
+
+curl 6.ipw.cn --connect-timeout 5 > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "IPv6 network connection timed out"
+  echo " "
+else
+  echo CatWrt IPv6 Addr: $(curl --silent 6.ipw.cn) 
+  echo " "
+fi
+
+# IPv6
+
+resp=$(curl --silent test.ipw.cn)
+
+if echo "$resp" | grep -q -E '240e|2408|2409|2401'; then
+  echo "[IPv6] IPv6 access is preferred"
+  echo " "
+else
+  echo "[IPv6] IPv4 access is preferred" 
+  echo " "
 fi
 
 # Default IP
@@ -130,16 +162,31 @@ fi
 
 grep 'config interface' /etc/config/network | grep 'wan6'  > /dev/null
 if [ $? -ne 0 ]; then
-   echo "Your IPv6 network may have issues"
+   echo "[wan6] Your IPv6 network may have issues"
    echo " "
 fi 
 
 grep 'dhcpv6' /etc/config/network > /dev/null
 if [ $? -ne 0 ]; then
-   echo "Your IPv6 network may have issues"
+   echo "[wan6] Your IPv6 network may have issues"
    echo " "
 fi
 
+# Tcping
+
+tcping -q -c 1 cn.bing.com
+[ $? -ne 0 ] && echo "Failed: cn.bing.com"
+
+tcping -q -c 1 bilibili.com
+[ $? -ne 0 ] && echo "Failed: bilibili.com"
+
+tcping -q -c 1 github.com
+[ $? -ne 0 ] && echo "Failed: github.com"
+
+tcping -q -c 1 google.com.hk
+[ $? -ne 0 ] && echo "Failed: google.com.hk"
+
+echo " "
 echo "$(date) - Network check completed"
 echo " "
 echo "CatWrt Network Diagnostics by @miaoermua"
