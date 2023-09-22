@@ -3,8 +3,8 @@
  # @Author: 喵二
  # @Date: 2023-09-22 09:19:42
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-22 12:45:30
- # @FilePath: \undefinedd:\Git\catnd\check.sh
+ # @LastEditTime: 2023-09-22 16:41:52
+ # @FilePath: \undefinedd:\Git\catnd\catnd.sh
 ### 
 
 echo "$(date) - Starting CatWrt-network-diagnostics"  
@@ -82,29 +82,22 @@ fi
 
 # CatWrt PPPoE
 
-wan_config=$(grep 'config interface' /etc/config/network | grep 'wan')
-
-if [ ! -z "$wan_config" ]; then
-
-  has_dhcp=$(grep 'option proto' $wan_config | grep 'dhcp')
-
-  if [ ! -z "$has_dhcp" ]; then
+grep 'dhcp' /etc/config/network
+if [ $? -eq 0 ]; then
     echo "[PPPoE] DHCP protocol detected in WAN interface"
     echo "The device may not be in PPPoE gateway mode"
-  fi
-
 fi
 
 # IPv6 WAN6
 
 grep 'config interface' /etc/config/network | grep 'wan6'
 if [ $? -ne 0 ]; then
-  echo "Your IPv6 network may have issues"
-fi
+   echo "Your IPv6 network may have issues"
+fi 
 
-grep 'proto 'dhcpv6'' /etc/config/network  
+grep 'dhcpv6' /etc/config/network
 if [ $? -ne 0 ]; then
-  echo "Your IPv6 network may have issues"
+   echo "Your IPv6 network may have issues"
 fi
 
 echo "$(date) - Network check completed"
