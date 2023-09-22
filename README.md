@@ -1,3 +1,10 @@
+<!--
+ * @Author: 喵二
+ * @Date: 2023-09-22 09:15:27
+ * @LastEditors: 喵二
+ * @LastEditTime: 2023-09-22 18:25:07
+ * @FilePath: \undefinedd:\Git\catnd\README.md
+-->
 # catnd
 CatWrt-network-diagnostics
 
@@ -17,7 +24,27 @@ chmod +x /usr/bin/catnd
 catnd
 ```
 
+## 手动安装
+
+**上传**
+
+将文件下载 https://github.com/miaoermua/catnd/raw/main/catnd.sh 上传到 /usr/bin/ 中，然后执行 `chmod +x /usr/bin/catnd.sh` 赋予执行权限，最后执行 catnd 即可
+
+
+**编辑**
+
+将文件中所有内容 https://github.com/miaoermua/catnd/raw/main/catnd.sh 复制，并且使用 vi vim nano 等编辑器创建 catnd 赋予执行权限，最后执行 catnd 即可
+
+```bash
+chmod +x /usr/bin/catnd.sh
+catnd
+```
+
+## 脚本流程
+
 - 开始
+- 检查系统环境
+- 显示 Banner 方便通过版本诊断
 - 通过 ping IP 地址测试网络是否连通
 - 通过 DNS 列表检查是否存在其中一个 DNS 地址
 - 查看 DNS 列表是否存在可靠性不高的 DNS 地址推荐用户修改为高可靠 DNS
