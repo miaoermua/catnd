@@ -15,7 +15,7 @@ fi
 release=$(cat /etc/openwrt_release)
 
 if [[ $release =~ "OpenWrt" ]]; then
-  echo "$(date) - Starting CatWrt Network Diagnostics"  
+  echo "$(date) - Starting CatWrt Network Diagnostics Installer"  
 else
   echo "Abnormal system environment..."
   echo " "
