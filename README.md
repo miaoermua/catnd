@@ -2,26 +2,32 @@
  * @Author: 喵二
  * @Date: 2023-09-22 09:15:27
  * @LastEditors: 喵二
- * @LastEditTime: 2023-09-22 18:25:07
- * @FilePath: \undefinedd:\Git\catnd\README.md
+ * @LastEditTime: 2023-09-30 18:46:28
+ * @FilePath: \catnd\README.md
 -->
 # catnd
 CatWrt-network-diagnostics
 
 适用用于 CatWrt 的网络诊断脚本，暂时不考虑第三方版本 OpenWrt
 
-**在线测试**
-
-```bash
-curl https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh | bash
-```
-
 **安装到 CatWrt 中**
 
 ```bash
-curl -o /usr/bin/catnd https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh
-chmod +x /usr/bin/catnd
+curl https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/installer.sh | bash
+```
+
+**使用**
+
+```bash
 catnd
+
+# /usr/bin/catnd
+```
+
+**联网试玩**
+
+```bash
+curl https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh | bash
 ```
 
 ## 手动安装
