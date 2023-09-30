@@ -2,13 +2,15 @@
  * @Author: 喵二
  * @Date: 2023-09-22 09:15:27
  * @LastEditors: 喵二
- * @LastEditTime: 2023-09-30 19:52:53
+ * @LastEditTime: 2023-09-30 19:55:20
  * @FilePath: \undefinedn:\Git\catnd\README.md
 -->
 # catnd
 CatWrt-network-diagnostics
 
 适用用于 CatWrt 的网络诊断脚本，暂时不考虑第三方版本 OpenWrt
+
+***
 
 **安装到 CatWrt 中**
 
