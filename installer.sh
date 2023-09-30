@@ -1,11 +1,11 @@
-# Check OpenWrt
 ###
  # @Author: 喵二
  # @Date: 2023-09-30 18:34:35
  # @LastEditors: 喵二
- # @LastEditTime: 2023-09-30 18:44:15
- # @FilePath: \catnd\installer.sh
+ # @LastEditTime: 2023-09-30 19:23:26
+ # @FilePath: \undefinedn:\Git\catnd\installer.sh
 ### 
+#!/bin/bash
 
 if [ $(id -u) != "0" ]; then
     echo "Error: You must be root to run this script, please use root user"
@@ -22,7 +22,7 @@ else
   exit 1
 fi
 
-curl -o /usr/bin/catnd https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh
+curl -O /usr/bin/catnd https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh
 
 chmod +x /usr/bin/catnd
 
