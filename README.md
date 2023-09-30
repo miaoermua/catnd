@@ -10,6 +10,8 @@ CatWrt-network-diagnostics
 
 适用用于 CatWrt 的网络诊断脚本，暂时不考虑第三方版本 OpenWrt
 
+***
+
 **安装到 CatWrt 中**
 
 ```bash
@@ -57,6 +59,8 @@ catnd
 
 修复方法: 账号密码可能纯在错误
 
+***
+
 ```shell
 [DNS] Recommended to delete DNS $ip
 ```
@@ -64,6 +68,8 @@ catnd
 诊断结果: 这个 DNS 不可靠
 
 修复方法: 更换可靠的 DNS 例如: `223.6.6.6 223.5.5.5 119.29.29.99`
+
+***
 
 ```
 [DNS] NS resolution failed for 'www.miaoer.xyz'
@@ -74,6 +80,8 @@ catnd
 
 修复方法: 可能是 DNS ，光猫以及 IPS 问题
 
+***
+
 ```shell
 [IPv6] IPv6 network connection timed out
 ```
@@ -81,6 +89,8 @@ catnd
 诊断结果: IPv6 获取地址失败
 
 修复方法: 恢复 IPv6 设置
+
+***
 
 ```shell
 [Default-IP] address is not the catwrt default 192.168.1.4
@@ -91,6 +101,8 @@ Please configure your network at 'https://www.miaoer.xyz/posts/network/quickstar
 
 修复方法: 小白用户按照我们的博客进行设置
 
+***
+
 ```shell
 [Bypass Gateway] No config for 'wan' interface found in /etc/config/network
 Please check if your device is set as a Bypass Gateway
@@ -98,12 +110,16 @@ Please check if your device is set as a Bypass Gateway
 
 诊断结果: 旁路网关？为啥没有 Wan 口
 
+***
+
 ```shell
 [PPPoE] DHCP protocol detected in WAN interface
 The device may not be in PPPoE Rotuer Mode
 ```
 
 诊断结果: 路由器没有进行拨号上网
+
+***
 
 ```shell
 [wan6] Your IPv6 network may have issues
