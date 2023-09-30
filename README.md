@@ -10,7 +10,7 @@ CatWrt-network-diagnostics
 
 适用用于 CatWrt 的网络诊断脚本，暂时不考虑第三方版本 OpenWrt
 
-**在线执行（闹着玩）**
+**在线测试**
 
 ```bash
 curl https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh | bash
@@ -26,12 +26,11 @@ catnd
 
 ## 手动安装
 
-**上传**
+### 上传
 
 将文件下载 https://github.com/miaoermua/catnd/raw/main/catnd.sh 上传到 /usr/bin/ 中，然后执行 `chmod +x /usr/bin/catnd.sh` 赋予执行权限，最后执行 catnd 即可
 
-
-**编辑**
+### 编辑
 
 将文件中所有内容 https://github.com/miaoermua/catnd/raw/main/catnd.sh 复制，并且使用 vi vim nano 等编辑器创建 catnd 赋予执行权限，最后执行 catnd 即可
 
@@ -39,6 +38,72 @@ catnd
 chmod +x /usr/bin/catnd.sh
 catnd
 ```
+
+## 自助诊断
+
+```shell
+[PPPoE] Please check if your PPPoE account and password are correct.
+```
+
+诊断结果: Ping 了几遍不通，检查了你包含 PPPoE 字段
+
+修复方法: 账号密码可能纯在错误
+
+```shell
+[DNS] Recommended to delete DNS $ip
+```
+
+诊断结果: 这个 DNS 不可靠
+
+修复方法: 更换可靠的 DNS 例如: `223.6.6.6 223.5.5.5 119.29.29.99`
+
+```
+[DNS] NS resolution failed for 'www.miaoer.xyz'
+[DNS] Your DNS server may have issues
+```
+
+诊断结果: 解析失败
+
+修复方法: 可能是 DNS ，光猫以及 IPS 问题
+
+```shell
+[IPv6] IPv6 network connection timed out
+```
+
+诊断结果: IPv6 获取地址失败
+
+修复方法: 恢复 IPv6 设置
+
+```shell
+[Default-IP] address is not the catwrt default 192.168.1.4
+Please configure your network at 'https://www.miaoer.xyz/posts/network/quickstart-catwrt
+```
+
+诊断结果: CatWrt 不是默认地址，如果你是小白用户可能乱动了设置
+
+修复方法: 小白用户按照我们的博客进行设置
+
+```shell
+[Bypass Gateway] No config for 'wan' interface found in /etc/config/network
+Please check if your device is set as a Bypass Gateway
+```
+
+诊断结果: 旁路网关？为啥没有 Wan 口
+
+```shell
+[PPPoE] DHCP protocol detected in WAN interface
+The device may not be in PPPoE Rotuer Mode
+```
+
+诊断结果: 路由器没有进行拨号上网
+
+```shell
+[wan6] Your IPv6 network may have issues
+```
+
+诊断结果: IPv6 接口删除
+
+修复方法: 重新配置 DHCPv6 客户端
 
 ## 脚本流程
 

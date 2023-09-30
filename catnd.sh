@@ -110,7 +110,7 @@ echo " "
 
 curl 6.ipw.cn --connect-timeout 5 > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-  echo "IPv6 network connection timed out"
+  echo "[IPv6] IPv6 network connection timed out"
   echo " "
 else
   echo CatWrt IPv6 Addr: $(curl --silent 6.ipw.cn) 
