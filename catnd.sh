@@ -149,18 +149,18 @@ if [ -z "$wan_config" ]; then
   echo " "
 fi
 
-# CatWrt PPPoE
+# Rotuer Mode(PPPoE)
 
 pass_config=$(grep 'password' /etc/config/network)
 user_config=$(grep 'username' /etc/config/network)
 pppoe_config=$(grep 'pppoe' /etc/config/network)
 
 if [ -n "$pass_config" ] && [ -n "$user_config" ] && [ -n "$pppoe_config" ]; then
-    echo "[PPPoE] PPPoE Gateway mode"
+    echo "[PPPoE] PPPoE Rotuer Mode"
     echo " " 
 else
     echo "[PPPoE] DHCP protocol detected in WAN interface"
-    echo "The device may not be in PPPoE Gateway mode"
+    echo "The device may not be in PPPoE Rotuer Mode"
     echo " " 
 fi
 
