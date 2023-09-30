@@ -32,13 +32,15 @@ curl https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh | bash
 
 ## 手动安装
 
+适合已经断网了但是没安装 catnd 脚本，二选一。
+
 ### 上传
 
-将文件下载 https://github.com/miaoermua/catnd/raw/main/catnd.sh 上传到 /usr/bin/ 中，然后执行 `chmod +x /usr/bin/catnd.sh` 赋予执行权限，最后执行 catnd 即可
+将文件下载 `https://github.com/miaoermua/catnd/raw/main/catnd.sh` 上传到 /usr/bin/ 中，然后执行 `chmod +x /usr/bin/catnd.sh` 赋予执行权限，最后执行 catnd 即可
 
 ### 编辑
 
-将文件中所有内容 https://github.com/miaoermua/catnd/raw/main/catnd.sh 复制，并且使用 vi vim nano 等编辑器创建 catnd 赋予执行权限，最后执行 catnd 即可
+将文件中`https://github.com/miaoermua/catnd/raw/main/catnd.sh` 所有内容复制，并且使用 vi vim nano 等编辑器创建 catnd 赋予执行权限，最后执行 catnd 即可
 
 ```bash
 chmod +x /usr/bin/catnd.sh
