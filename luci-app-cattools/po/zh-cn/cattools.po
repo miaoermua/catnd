@@ -1,0 +1,18 @@
+msgid ""
+msgstr ""
+msgstr "Content-Type: text/plain; charset=UTF-8\n"; "Language: zh_CN\n"
+
+msgid "CatTools"
+msgstr "CatTools"
+
+msgid "CatWrt LuCi Script Toolbox"
+msgstr "图形化 CatWrt 脚本工具箱"
+
+msgid "GO"
+msgstr "执行"
+
+msgid "Reboot"
+msgstr "重启"
+
+msgid "Reboot System"
+msgstr "重启系统"
