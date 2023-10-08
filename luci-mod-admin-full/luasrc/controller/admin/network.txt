@@ -153,8 +153,10 @@ function index()
 		page = entry({"admin", "network", "diag_traceroute6"}, post("diag_traceroute6"), nil)
 		page.leaf = true
 
-		page = entry({"admin", "network", "diag_catnd"}, call("diag_catnd"))
-		page.leaf = true
+		entry({"admin", "network", "diag_catnd"}, call("diag_catnd")).leaf = true
+        function diag_catnd()
+          luci.http.prepare_content("text/plain") 
+          luci.sys.call("/usr/bin/catnd 2>&1")
 --	end
 end
 
@@ -435,9 +437,4 @@ end
 
 function diag_traceroute6(addr)
 	diag_command("traceroute6 -q 1 -w 2 -n %q 2>&1", addr)
-end
-
-function diag_catnd()
-	luci.http.prepare_content("text/plain") 
-	luci.sys.call("/usr/bin/catnd 2>&1")
 end

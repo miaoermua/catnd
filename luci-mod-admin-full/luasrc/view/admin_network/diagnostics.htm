@@ -105,11 +105,22 @@ local route_host = luci.config.diag and luci.config.diag.route or "dev.openwrt.o
 
 			<div style="width:33%; float:left;"></div>
 			     <input type="button" value="catnd" onclick="update_status(this.form.catnd)"/>
-                    <script>
-                    function update_status(field) {
-                    stxhr.post('/diag_catnd', handleResponse); 
-                    }
-                    </script>
+				 <script>
+					function handleResponse(xhr) {
+					  // 更新页面显示命令输出
+					  document.getElementById('output').innerHTML = '<pre>' + xhr.responseText + '</pre>';
+					}
+					function update_status(field) {
+					  // 发起XHR请求
+					  var xhr = new XMLHttpRequest();
+					  xhr.onload = function() {
+						handleResponse(xhr); 
+					  };
+					  // 发送请求
+					  xhr.open('POST', '/diag_' + field.name);
+					  xhr.send();
+					}
+					</script>
 			</div>
 
 			<br style="clear:both" /><br />
