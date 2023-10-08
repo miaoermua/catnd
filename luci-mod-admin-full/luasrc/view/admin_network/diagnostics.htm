@@ -60,7 +60,9 @@ local route_host = luci.config.diag and luci.config.diag.route or "dev.openwrt.o
 <form method="post" action="<%=url('admin/network/diagnostics')%>">
 	<div class="cbi-map">
 		<h2 name="content"><%:Diagnostics%></h2>
-
+        <div class="cbi-map-descr">在 CatWrt 中使用 Ping,Traceroute,NSlookup 进行网络诊断，建议在终端中使用 <a href="https://www.miaoer.xyz/posts/network/catwrt-bash-script" target="_blank">catnd</a>
+		<br>
+		<abbr title=" CatWrt-Network-Diagnostics">catnd</abbr> 提供了多种自助诊断方式快速定位断网问题</div>
 		<fieldset class="cbi-section">
 			<legend><%:Network Utilities%></legend>
 
