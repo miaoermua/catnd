@@ -103,6 +103,15 @@ local route_host = luci.config.diag and luci.config.diag.route or "dev.openwrt.o
 				<input type="button" value="<%:Nslookup%>" class="cbi-button cbi-button-apply" onclick="update_status(this.form.nslookup)" />
 			</div>
 
+			<div style="width:33%; float:left;"></div>
+			     <input type="button" value="catnd" onclick="update_status(this.form.catnd)"/>
+                    <script>
+                    function update_status(field) {
+                    stxhr.post('/diag_catnd', handleResponse); 
+                    }
+                    </script>
+			</div>
+
 			<br style="clear:both" /><br />
 
 		</fieldset>
