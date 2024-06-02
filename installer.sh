@@ -22,7 +22,7 @@ else
   exit 1
 fi
 
-curl -O /usr/bin/catnd https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh
+wget -O /usr/bin/catnd https://fastly.jsdelivr.net/gh/miaoermua/catnd@main/catnd.sh
 
 chmod +x /usr/bin/catnd
 
